@@ -1,6 +1,6 @@
 const Contact = require("../module/Contact");
 
-// Submit contact form (public)
+//  contact form (public)
 exports.createContact = async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
@@ -17,7 +17,7 @@ exports.createContact = async (req, res) => {
   }
 };
 
-// Fetch all contact entries (admin only)
+// Fetch all contact  (admin only)
 exports.getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });

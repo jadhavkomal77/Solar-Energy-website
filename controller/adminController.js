@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const Admin = require("../module/Admin");
 
 
-
 exports.register = asyncHandler(async (req, res) => {
   const { name, email, phone, password } = req.body;
   if (!name || !email || !password)
@@ -21,7 +20,7 @@ exports.register = asyncHandler(async (req, res) => {
   res.status(201).json({ message: "Admin registered successfully", admin });
 });
 
-// ===== Admin Login =====
+//  Admin Login 
 exports.login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const admin = await Admin.findOne({ email });
@@ -41,7 +40,7 @@ exports.login = asyncHandler(async (req, res) => {
     maxAge: 60 * 60 * 1000,
   });
 
-  // ✅ Also return token in response if frontend uses headers
+  //  Also return token in response if frontend uses headers
   res.status(200).json({
     message: "Login successful",
     admin: {
@@ -53,7 +52,7 @@ exports.login = asyncHandler(async (req, res) => {
   });
 });
 
-// ===== Admin Logout =====
+//  Admin Logout 
 exports.logout = asyncHandler(async (req, res) => {
   res.clearCookie("adminToken");
   res.json({ message: "Admin logout success" });
@@ -61,13 +60,13 @@ exports.logout = asyncHandler(async (req, res) => {
 
 
 
-// ===== Get Admin Profile =====
+//  Get Admin Profile 
 exports.getProfile = asyncHandler(async (req, res) => {
   if (!req.user) return res.status(404).json({ message: "Admin not found" });
   res.json(req.user);
 });
 
-// ===== Update Admin Profile =====
+//  Update Admin Profile 
 exports.updateProfile = asyncHandler(async (req, res) => {
   const { name, email, phone, password } = req.body;
   const admin = req.user;
