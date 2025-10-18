@@ -10,6 +10,12 @@ app.use(express.json());
 app.use(cookieparser())
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({
+    origin:
+        process.env.NODE_ENV === 'development' ?
+            "http://localhost:5173" : "https://solar-energy-website.onrender.com", credentials: true
+}));
+
 
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/contact", require("./routes/contactRoutes"));
