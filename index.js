@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieparser())
 app.use(express.static(path.join(__dirname, "dist")))
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+// app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(cors({
     origin:
         process.env.NODE_ENV === 'development' ?
